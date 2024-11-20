@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>
         {% block title %}
         Block Title
@@ -9,8 +10,21 @@
     </title>
 </head>
 <body>
-    {% block body %}
+    {% block body %} <!-- переопределенный блок, то есть он будет заменен в родительском шаблоне -->
     Block body
     {% endblock %}
+<div>
+    <ol>
+        {% for name, prices  in data %} <!-- Перебираем в цикле вложенный кортеж-->
+            <li>Name: {{ name }}, prices : {{ prices }}</li><!-- Выводим содержимое на страницу,
+             как нумерованный список, каждая пара элементов нумеруется и выводится с новой строки-->
+        {% empty %} <!-- Если переданный сервером массив пустой ниже пишем сообщение которое нужно выводить в таких случаях -->
+        No items found.
+        {% endfor %}
+    </ol>
+</div>
+<div>
+    {% now 'H:i" %}
+</div>
 </body>
 </html>
