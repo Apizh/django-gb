@@ -24,7 +24,7 @@ def shop_index(request: HttpRequest):
         ('Peach', 2.0),
     ]
     context = {
-        'data' : None,
+        'data' : data,
         'time_running': default_timer(),
     }
     return render(request, 'shop/shop-index.html', context=context)
