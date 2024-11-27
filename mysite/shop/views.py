@@ -1,6 +1,9 @@
 from django.http import HttpRequest #, HttpResponse
 from django.shortcuts import render
 from timeit import default_timer
+from django.contrib.auth.models import Group
+
+
 
 # def shop_index(request: HttpRequest):
 #     print(request.method)
@@ -9,6 +12,7 @@ from timeit import default_timer
 #     return HttpResponse("<h1>Hello world, было создано благодаря добавлению приложения в settings, в корневом проекте, добавлением include обработке маршрутов в urls.py, созданию</h1>")
 
 def shop_index(request: HttpRequest):
+    # Generate a list of fruit names and their respective prices.
     data = [
         ('Apple', 1.2),
         ('Banana', 0.8),
@@ -28,3 +32,8 @@ def shop_index(request: HttpRequest):
         'time_running': default_timer(),
     }
     return render(request, 'shop/shop-index.html', context=context)
+
+def groups_list(request: HttpRequest):
+    # Retrieve all groups from the database and pass them to the template for rendering.
+    context = {'groups': Group.objects.all(),}
+    return render(request, "shop/groups-list.html", context=context)

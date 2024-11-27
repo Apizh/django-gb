@@ -1,0 +1,17 @@
+{% extends "shop/base.html" %}
+<! Вывод всех групп, пользователей>
+{% block title %}
+Groups list
+{% endblock %}
+{% block body %}
+<h1>Groups:</h1>
+<div>
+    {% for group in groups %}
+    <ol>
+        <li>{{ group }}</li>
+        {% empty %}
+        No groups found.
+    </ol>
+    {% endfor %}
+</div>
+{% endblock %}

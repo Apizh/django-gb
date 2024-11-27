@@ -11,7 +11,6 @@
 <body>
     {% block body %} <!-- переопределенный блок, то есть он будет заменен в родительском шаблоне -->
     Block body
-    {% endblock %}
     <div>
         <ol>
             {% for name, prices in data %} <!-- Перебираем в цикле вложенный кортеж-->
@@ -25,8 +24,10 @@
             {% endfor %}
         </ol>
     </div>
+    {% endblock %}
     <div>
         {% now 'H:i' %}
     </div>
+
 </body>
 </html>
