@@ -1,17 +1,31 @@
 {% extends "shop/base.html" %}
-<! Вывод всех групп, пользователей>
+<!-- Этот шаблон используется для вывода списка групп и пользователей -->
+
 {% block title %}
-Groups list
+    Список групп
 {% endblock %}
+
 {% block body %}
-<h1>Groups:</h1>
-<div>
-    {% for group in groups %}
-    <ol>
-        <li>{{ group }}</li>
-        {% empty %}
-        No groups found.
-    </ol>
-    {% endfor %}
-</div>
+    <h1>Group:</h1>
+    <div>
+        <ol>
+            <!-- Перебор всех групп -->
+            {% for group in groups %}
+                <li>
+                    <div>{{ group.name }}</div>
+                    <!-- Перебор всех прав доступа для каждой группы -->
+                    <ol>
+                        {% for permission in group.permissions.all %}
+                            <li>
+                                {{ permission.name }}
+                                (<code>{{ permission.codename }}</code>) <!-- Вывод кода права доступа -->
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </li>
+            {% empty %}
+                <p>Группы не найдены.</p>
+            {% endfor %}
+        </ol>
+    </div>
 {% endblock %}

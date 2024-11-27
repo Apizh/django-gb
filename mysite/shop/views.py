@@ -35,5 +35,5 @@ def shop_index(request: HttpRequest):
 
 def groups_list(request: HttpRequest):
     # Retrieve all groups from the database and pass them to the template for rendering.
-    context = {'groups': Group.objects.all(),}
+    context = {'groups': Group.objects.prefetch_related("permissions").all(),}
     return render(request, "shop/groups-list.html", context=context)
