@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Product(models.Model):
     """
@@ -20,3 +20,4 @@ class Order(models.Model):
     delivery_address = models.TextField(null=False, blank=True)  # Адрес доставки
     promocode = models.CharField(max_length=20, null=False, blank=True) # Промокод
     created_at = models.DateTimeField(auto_now_add=True)  # Дата и время создания заказа
+    user = models.ForeignKey(User, on_delete=models.PROTECT)  # Пользователь, сделавший заказ
