@@ -11,3 +11,4 @@ class Product(models.Model):
                                 default=0)  # Цена продукта, с двумя знаками после запятой
     discount = models.SmallIntegerField(default=0)  # Скидка на продукт, в процентах
     created_dat = models.DateTimeField(auto_now_add=True)  # Дата и время создания продукта
+    archived = models.BooleanField(default=False) # Флаг архивирования продукта
