@@ -51,5 +51,5 @@ def products_list(request: HttpRequest):
 
 def orders_list(request: HttpRequest):
     # Retrieve all orders from the database and pass them to the template for rendering.
-    context = {'orders': Order.objects.select_related('user').all()}
+    context = {'orders': Order.objects.select_related('user').prefetch_related("products").all()}
     return render(request, "shop/orders-list.html", context=context)

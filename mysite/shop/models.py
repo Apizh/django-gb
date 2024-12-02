@@ -21,3 +21,4 @@ class Order(models.Model):
     promocode = models.CharField(max_length=20, null=False, blank=True) # Промокод
     created_at = models.DateTimeField(auto_now_add=True)  # Дата и время создания заказа
     user = models.ForeignKey(User, on_delete=models.PROTECT)  # Пользователь, сделавший заказ
+    products = models.ManyToManyField(Product, related_name='orders')  # Продукты в заказе'

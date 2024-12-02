@@ -10,6 +10,16 @@ Orders list
   {% for order in orders %}
   <p>Order by: {% firstof order.user.first_name order.user.username %}</p>
   <p>Delivery address: {{ order.delivery_address }}</p>
+  <div>
+    <h3>Products:</h3>
+    <ol>
+      {% for product in order.products.all %}
+        <li>Product: {{ product.name }}, price {{ product.price }}</li>
+      {% empty %}
+        <p>No products in this order.</p>
+      {% endfor %}
+    </ol>
+  </div>
   {% empty %}
     <p>No orders found.</p>
   {% endfor %}
