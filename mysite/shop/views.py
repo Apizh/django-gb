@@ -1,8 +1,9 @@
-from django.http import HttpRequest #, HttpResponse
+from django.http import HttpRequest  # , HttpResponse
 from django.shortcuts import render
 from timeit import default_timer
 from django.contrib.auth.models import Group
 
+from shop.models import Product
 
 
 # def shop_index(request: HttpRequest):
@@ -28,12 +29,21 @@ def shop_index(request: HttpRequest):
         ('Peach', 2.0),
     ]
     context = {
-        'data' : data,
+        'data': data,
         'time_running': default_timer(),
     }
     return render(request, 'shop/shop-index.html', context=context)
 
+
 def groups_list(request: HttpRequest):
     # Retrieve all groups from the database and pass them to the template for rendering.
-    context = {'groups': Group.objects.prefetch_related("permissions").all(),}
+    context = {'groups': Group.objects.prefetch_related("permissions").all(), }
     return render(request, "shop/groups-list.html", context=context)
+
+
+def products_list(request: HttpRequest):
+    # Retrieve all products from the database and pass them to the template for rendering.
+    # Your implementation here
+    context = {"products": Product.objects.all()}
+
+    return render(request, "shop/products-list.html", context=context)
