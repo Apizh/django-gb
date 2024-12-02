@@ -20,7 +20,7 @@ from .views import shop_index, groups_list, products_list
 app_name = "shop"
 urlpatterns = [
     path('', shop_index, name="index"),
-    path('groups/', groups_list, name="groups" ),
+    path('groups/', groups_list, name="groups"),
     path('products/', products_list, name="products"),
 
 ]
