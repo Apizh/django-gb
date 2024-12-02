@@ -17,9 +17,9 @@ class Command(BaseCommand):
             'Grape',
             'Strawberry',
         ]
-        for product in products:
+        for product_name in products:
             # Добавляем продукты в БД
-            product, created = Product.objects.get_or_create(name=product, description='Описание продукта' + product)
+            product, created = Product.objects.get_or_create(name=product_name)
             self.stdout.write(f"Добавлен продукт :{product.name}")
             # Ваша реализация здесь
 

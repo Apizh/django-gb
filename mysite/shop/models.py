@@ -2,5 +2,12 @@ from django.db import models
 
 
 class Product(models.Model):
+    """
+    Класс модели для представления продукта.
+    """
     name = models.CharField(max_length=100)  # Название продукта, с максимальной длиной в 100 символов
     description = models.TextField(null=False, blank=True)  # Описание продукта
+    price = models.DecimalField(max_digits=8, decimal_places=2,
+                                default=0)  # Цена продукта, с двумя знаками после запятой
+    discount = models.SmallIntegerField(default=0)  # Скидка на продукт, в процентах
+    created_dat = models.DateTimeField(auto_now_add=True)  # Дата и время создания продукта
