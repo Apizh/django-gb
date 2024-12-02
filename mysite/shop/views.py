@@ -3,7 +3,7 @@ from django.shortcuts import render
 from timeit import default_timer
 from django.contrib.auth.models import Group
 
-from shop.models import Product
+from shop.models import Product, Order
 
 
 # def shop_index(request: HttpRequest):
@@ -47,3 +47,9 @@ def products_list(request: HttpRequest):
     context = {"products": Product.objects.all()}
 
     return render(request, "shop/products-list.html", context=context)
+
+
+def orders_list(request: HttpRequest):
+    # Retrieve all orders from the database and pass them to the template for rendering.
+    context = {'orders': Order.objects.select_related('user').all()}
+    return render(request, "shop/orders-list.html", context=context)

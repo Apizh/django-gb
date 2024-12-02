@@ -1,0 +1,17 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+Orders list
+{% endblock title %}
+
+{% block body %}
+<h1>Orders list</h1>
+<div>
+  {% for order in orders %}
+  <p>Order by: {% firstof order.user.first_name order.user.username %}</p>
+  <p>Delivery address: {{ order.delivery_address }}</p>
+  {% empty %}
+    <p>No orders found.</p>
+  {% endfor %}
+</div>
+{% endblock %}
