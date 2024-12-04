@@ -6,6 +6,10 @@ class Product(models.Model):
     """
     Класс модели для представления продукта.
     """
+
+    class Meta:
+        ordering = ['price']  # Сортировка продуктов по цене
+
     name = models.CharField(max_length=100)  # Название продукта, с максимальной длиной в 100 символов
     description = models.TextField(null=False, blank=True)  # Описание продукта
     price = models.DecimalField(max_digits=8, decimal_places=2,
@@ -14,8 +18,12 @@ class Product(models.Model):
     created_dat = models.DateTimeField(auto_now_add=True)  # Дата и время создания продукта
     archived = models.BooleanField(default=False)  # Флаг архивирования продукта
 
-    class Meta:
-        ordering = ['price']  # Сортировка продуктов по цене
+    @property
+    def description_repr(self) -> str:
+        return self.description[:50] + '...'  # Обрезка текста описания до 50 символов
+
+    def __str__(self) -> str:
+        return f"Product(pk={self.pk}, name={self.name!r})"  # Переопределение отображение продукта в "админке"
 
 
 class Order(models.Model):
