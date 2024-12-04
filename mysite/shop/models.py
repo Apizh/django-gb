@@ -18,9 +18,9 @@ class Product(models.Model):
     created_dat = models.DateTimeField(auto_now_add=True)  # Дата и время создания продукта
     archived = models.BooleanField(default=False)  # Флаг архивирования продукта
 
-    @property
-    def description_repr(self) -> str:
-        return self.description[:50] + '...'  # Обрезка текста описания до 50 символов
+    # @property
+    # def description_repr(self) -> str:
+    #     return self.description[:50] + '...'  # Обрезка текста описания до 50 символов
 
     def __str__(self) -> str:
         return f"Product(pk={self.pk}, name={self.name!r})"  # Переопределение отображение продукта в "админке"

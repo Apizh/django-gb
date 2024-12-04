@@ -13,4 +13,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display_links = ['pk',
                           'name']  # Поля, которые будут использоваться для создания ссылки в административной панели.
 
-# admin.site.register(Product, ProductAdmin)  # Вариант опеределения модели Product в административной панели.
+    def description_repr(self, obj: Product) -> str:
+        return obj.description[:50] # переопределение вывода поля description в административной панели.
+
+    # admin.site.register(Product, ProductAdmin)  # Вариант опеределения модели Product в административной панели.
